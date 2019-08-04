@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../Aux';
+import Aux from '../AuxComp';
 import Modal from '../../components/UI/Modal/Modal';
 import { runInThisContext } from 'vm';
 
