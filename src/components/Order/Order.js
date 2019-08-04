@@ -15,7 +15,7 @@ const order = (props) => {
             <p>Ingredients:</p>
             {ingredients.map(el => {
                 return (
-                    <div>
+                    <div key={el[0]}>
                         <span key={el[0]}>{el[0]}: ({el[1]})</span>
                         <hr />
                     </div>
