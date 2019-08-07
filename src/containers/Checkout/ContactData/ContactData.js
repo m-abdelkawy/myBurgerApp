@@ -80,8 +80,8 @@ class ContactData extends Component {
         this.setState({ loading: true }); //start loading
 
         const order = {
-            ingredients: this.props.ingredients,
-            price: this.props.totalPrice,
+            ingredients: this.props.ings,
+            price: this.props.price,
             orderData: formData
         };
 
