@@ -7,7 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/orderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import * as actionTypes from '../../Store/actions';
 
 
@@ -40,7 +40,8 @@ class BurgerBuilder extends Component {
         }).reduce((totalItems, el) => { return totalItems + el }, 0);
         console.log(totalItems);
 
-        this.setState({ purchaseable: totalItems > 0 })
+        // this.setState({ purchaseable: totalItems > 0 })
+        return totalItems > 0;
     }
 
     addIngredientHandler = (type) => {
@@ -88,18 +89,18 @@ class BurgerBuilder extends Component {
     }
     purchaseContinueHandler = () => {
 
-        // this.props.history.push('/checkout');
-        const queryParams = [];
-        for (let i in this.props.ings) {
-            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i]));
-        }
-        queryParams.push('price=' + this.props.price);
-        const queryString = queryParams.join('&');
-        console.log(this.props.history);
-        this.props.history.push({
-            pathname: '/checkout',
-            search: '?' + queryString
-        });
+        this.props.history.push('/checkout');
+        // const queryParams = [];
+        // for (let i in this.props.ings) {
+        //     queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.props.ings[i]));
+        // }
+        // queryParams.push('price=' + this.props.price);
+        // const queryString = queryParams.join('&');
+        // console.log(this.props.history);
+        // this.props.history.push({
+        //     pathname: '/checkout',
+        //     search: '?' + queryString
+        // });
     }
 
     render() {
@@ -132,7 +133,7 @@ class BurgerBuilder extends Component {
                         btnAddDisabled={btnAddDisabledInfo}
                         btnRemoveDisabled={btnRemoveDisabledInfo}
                         totalPrice={this.props.price}
-                        purchaseable={this.state.purchaseable}
+                        purchaseable={this.updatePurchaseableState(this.props.ings)}
                         orderNow={this.purchaseHandler} />
                 </Aux >);
         }
